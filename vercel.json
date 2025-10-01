@@ -2,8 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://barber-app-backend-cf1a746fda2c.herokuapp.com/"
+      "destination": "https://barber-app-backend-cf1a746fda2c.herokuapp.com/api/:path*"
     }
   ]
 }
-
