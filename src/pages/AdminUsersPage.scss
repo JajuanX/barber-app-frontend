@@ -1,0 +1,15 @@
+.admin-users { max-width: 820px; margin: 0 auto; padding: 1rem; }
+.admin-users__title { margin-bottom: 0.75rem; }
+.admin-users__form { display: grid; gap: 0.75rem; margin-bottom: 1rem; }
+.admin-users__field { display: grid; gap: 0.25rem; }
+.admin-users__field--inline { grid-template-columns: 120px 1fr; align-items: center; }
+.admin-users__label { font-weight: 600; }
+.admin-users__submit { width: fit-content; background: #2e7d32; color: #fff; border: 0; padding: 0.5rem 1rem; border-radius: 6px; }
+.admin-users__error { color: #c62828; }
+.admin-users__list { list-style: none; padding: 0; display: grid; gap: 0.5rem; }
+.admin-users__item { display: grid; grid-template-columns: 1fr auto auto; gap: 0.5rem; align-items: center; border: 1px solid #eee; border-radius: 6px; padding: 0.5rem 0.75rem; }
+.admin-users__name { font-weight: 700; }
+.admin-users__email { color: #555; }
+.admin-users__toggle { background: #1e88e5; color: #fff; border: 0; padding: 0.25rem 0.5rem; border-radius: 4px; }
+.admin-users__status { text-align: center; padding: 1rem; }
+

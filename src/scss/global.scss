@@ -1,0 +1,8 @@
+body { font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; margin: 0; color: #111; }
+.app { max-width: 960px; margin: 0 auto; }
+.app__header { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; border-bottom: 1px solid #eee; }
+.app__nav { display: flex; align-items: center; gap: 0.75rem; }
+.app__title { font-size: 1.25rem; margin: 0; }
+.app__nav-link { color: #1e88e5; text-decoration: none; padding: 0.25rem 0.25rem; background: transparent; border: none; cursor: pointer; }
+.app__nav-link--active { color: #0d47a1; border-bottom: 2px solid #0d47a1; padding-bottom: 2px; }
+.app__main { padding: 1rem; }

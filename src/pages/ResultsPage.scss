@@ -1,0 +1,22 @@
+.results-page {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 1rem;
+
+  &__summary { margin-bottom: 1rem; }
+  &__title { margin: 0 0 0.25rem 0; }
+  &__score { font-size: 1.25rem; margin-bottom: 0.5rem; }
+  &__restart { padding: 0.5rem 1rem; background: #1e88e5; border: 0; color: #fff; border-radius: 6px; }
+
+  &__list { list-style: none; padding: 0; display: grid; gap: 0.75rem; }
+  &__item { border: 1px solid #ddd; border-left-width: 6px; padding: 0.75rem; border-radius: 6px; }
+  &__item--correct { border-left-color: #2e7d32; background: #e8f5e9; }
+  &__item--wrong { border-left-color: #c62828; background: #ffebee; }
+  &__q { font-weight: 600; margin-bottom: 0.25rem; }
+  &__a { color: #333; margin-bottom: 0.25rem; }
+  &__ex { color: #555; }
+
+  &__back { display: inline-block; margin-top: 1rem; }
+  &__notice { text-align: center; }
+}
+

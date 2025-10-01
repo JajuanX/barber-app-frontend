@@ -1,0 +1,27 @@
+# Node / package managers
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# Vite / build output
+dist/
+.vite/
+.cache/
+
+# Testing / coverage
+coverage/
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Misc
+.DS_Store
+.eslintcache
+.turbo/
+.parcel-cache/
+*.local

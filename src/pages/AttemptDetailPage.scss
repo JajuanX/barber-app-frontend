@@ -1,0 +1,11 @@
+.attempt-detail {
+  max-width: 820px; margin: 0 auto; padding: 1rem;
+  &__title { margin-bottom: 0.25rem; }
+  &__summary { color: #555; margin-bottom: 0.75rem; }
+  &__list { list-style: none; padding: 0; display: grid; gap: 0.75rem; }
+  &__item { border: 1px solid #eee; border-left: 6px solid #c62828; background: #ffebee; padding: 0.75rem; border-radius: 6px; }
+  &__q { font-weight: 700; margin-bottom: 0.25rem; }
+  &__a { margin-bottom: 0.25rem; }
+  &__ex { color: #444; }
+}
+

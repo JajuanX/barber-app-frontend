@@ -1,0 +1,8 @@
+.history-page {
+  max-width: 720px; margin: 0 auto; padding: 1rem;
+  &__title { margin-bottom: 0.75rem; }
+  &__list { list-style: none; padding: 0; display: grid; gap: 0.5rem; }
+  &__item { display: flex; justify-content: space-between; border: 1px solid #eee; padding: 0.5rem 0.75rem; border-radius: 6px; }
+  &__score { font-weight: 700; }
+}
+
