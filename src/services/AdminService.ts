@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { getAuthToken } from '../context/AuthContext';
 
-const client = axios.create({ baseURL: '/api/admin' });
+const API_BASE = (import.meta as any).env?.VITE_API_BASE_URL || '/api';
+const client = axios.create({ baseURL: `${API_BASE}/admin` });
 client.interceptors.request.use((config) => {
   config.headers = config.headers || {};
   const token = getAuthToken();

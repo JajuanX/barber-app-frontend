@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
+const API_BASE = (import.meta as any).env?.VITE_API_BASE_URL || '/api';
 import { getAuthToken } from '../context/AuthContext';
 
 export type QuestionPayload = {
@@ -13,7 +14,7 @@ class QuestionService {
   private client: AxiosInstance;
 
   constructor() {
-    this.client = axios.create({ baseURL: '/api/questions' });
+    this.client = axios.create({ baseURL: `${API_BASE}/questions` });
     this.client.interceptors.request.use((config) => {
       config.headers = config.headers || {};
       const token = getAuthToken();

@@ -9,6 +9,7 @@ import { AdminQuestionsPage } from './pages/AdminQuestionsPage';
 import AdminAnalyticsPage from './pages/AdminAnalyticsPage';
 import AdminUsersPage from './pages/AdminUsersPage';
 import { useAuth } from './context/AuthContext';
+import StudentInsightsPage from './pages/StudentInsightsPage';
 
 const App: React.FC = () => {
   const { user, logout } = useAuth();
@@ -24,7 +25,10 @@ const App: React.FC = () => {
             <>
               <NavLink to="/" className={({ isActive }) => `app__nav-link${isActive ? ' app__nav-link--active' : ''}`}>Quiz</NavLink>
               {user && (
-                <NavLink to="/history" className={({ isActive }) => `app__nav-link${isActive ? ' app__nav-link--active' : ''}`}>History</NavLink>
+                <>
+                  <NavLink to="/history" className={({ isActive }) => `app__nav-link${isActive ? ' app__nav-link--active' : ''}`}>History</NavLink>
+                  <NavLink to="/insights" className={({ isActive }) => `app__nav-link${isActive ? ' app__nav-link--active' : ''}`}>Insights</NavLink>
+                </>
               )}
             </>
           )}
@@ -58,6 +62,7 @@ const App: React.FC = () => {
               <Route path="/results" element={<ResultsPage />} />
               <Route path="/history" element={<HistoryPage />} />
               <Route path="/history/:attemptId" element={<AttemptDetailPage />} />
+              <Route path="/insights" element={<StudentInsightsPage />} />
             </>
           )}
 

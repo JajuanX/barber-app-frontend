@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { getAuthToken } from '../context/AuthContext';
 
-const client = axios.create({ baseURL: '/api/analytics' });
+const API_BASE = (import.meta as any).env?.VITE_API_BASE_URL || '/api';
+const client = axios.create({ baseURL: `${API_BASE}/analytics` });
 client.interceptors.request.use((config) => {
   config.headers = config.headers || {};
   const token = getAuthToken();
@@ -33,5 +34,21 @@ export type StudentStats = {
 
 export async function fetchStudentStats(userId: string): Promise<StudentStats> {
   const res = await client.get('/student-stats', { params: { userId } });
+  return res.data.data as StudentStats;
+}
+
+// Self-serve (student)
+export async function fetchMyOverview(): Promise<{ overview: Overview; distribution: { _id: number; count: number }[] }> {
+  const res = await client.get('/me/overview');
+  return res.data.data as any;
+}
+
+export async function fetchMyCategories(): Promise<CategoryRow[]> {
+  const res = await client.get('/me/categories');
+  return res.data.data as any;
+}
+
+export async function fetchMySummary(): Promise<StudentStats> {
+  const res = await client.get('/me/summary');
   return res.data.data as StudentStats;
 }

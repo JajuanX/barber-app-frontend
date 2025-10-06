@@ -115,7 +115,18 @@ const AdminAnalyticsPage: React.FC = () => {
 
       <section className="admin-analytics__section">
         <h3 className="admin-analytics__subtitle">Category Accuracy</h3>
-        <BarChart data={catData} max={100} color="#2e7d32" showValues valueFormatter={(n) => `${n}%`} labelAngle={-35} />
+        <BarChart
+          data={catData}
+          max={100}
+          color="#2e7d32"
+          showValues
+          valueFormatter={(n) => `${n}%`}
+          labelAngle={0}
+          labelWrapChars={16}
+          labelFontSize={12}
+          minBarWidth={72}
+          height={220}
+        />
       </section>
     </div>
   );

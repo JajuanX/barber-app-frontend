@@ -1,11 +1,12 @@
 import axios, { AxiosInstance } from 'axios';
+const API_BASE = (import.meta as any).env?.VITE_API_BASE_URL || '/api';
 import { getAuthToken } from '../context/AuthContext';
 
 class QuizService {
   private client: AxiosInstance;
 
   constructor() {
-    this.client = axios.create({ baseURL: '/api' });
+    this.client = axios.create({ baseURL: `${API_BASE}/quiz` });
     this.client.interceptors.request.use((config) => {
       config.headers = config.headers || {};
       const token = getAuthToken();
@@ -15,22 +16,22 @@ class QuizService {
   }
 
   async startQuiz(category?: string) {
-    const res = await this.client.post('/quiz/start', { category });
+    const res = await this.client.post('/start', { category });
     return res.data.data as { attemptId: string; questions: QuestionDTO[] };
   }
 
   async submitQuiz(attemptId: string, answers: { questionId: string; selectedKey: string }[]) {
-    const res = await this.client.post('/quiz/submit', { attemptId, answers });
+    const res = await this.client.post('/submit', { attemptId, answers });
     return res.data.data as GradeResultDTO;
   }
 
   async myHistory() {
-    const res = await this.client.get('/quiz/history');
+    const res = await this.client.get('/history');
     return res.data.data as any[];
   }
 
   async attemptDetail(attemptId: string, wrongOnly = true) {
-    const res = await this.client.get(`/quiz/attempts/${attemptId}`, { params: { wrongOnly } });
+    const res = await this.client.get(`/attempts/${attemptId}`, { params: { wrongOnly } });
     return res.data.data as GradeResultDTO & { attemptId: string; submitted: boolean };
   }
 }
