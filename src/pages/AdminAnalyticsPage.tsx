@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { fetchOverview, fetchCategories, fetchStudentStats, Overview, CategoryRow, StudentStats } from '../services/AnalyticsService';
+import { fetchOverview, fetchCategories, fetchStudentStats, fetchTopStudents, fetchLastAttempts, Overview, CategoryRow, StudentStats, TopStudent, AttemptRow } from '../services/AnalyticsService';
 import { listUsers, UserRow } from '../services/AdminService';
 import { Select } from '../components/Select';
 import BarChart from '../components/BarChart';
@@ -14,6 +14,8 @@ const AdminAnalyticsPage: React.FC = () => {
   const [users, setUsers] = useState<UserRow[]>([]);
   const [selectedUser, setSelectedUser] = useState<string>('all');
   const [studentStats, setStudentStats] = useState<StudentStats | undefined>();
+  const [topStudents, setTopStudents] = useState<TopStudent[]>([]);
+  const [lastAttempts, setLastAttempts] = useState<AttemptRow[]>([]);
 
   useEffect(() => {
     const run = async () => {
@@ -29,8 +31,15 @@ const AdminAnalyticsPage: React.FC = () => {
         setDistribution(o.distribution);
         const c = await fetchCategories(userId);
         setCategories(c);
-        if (userId) setStudentStats(await fetchStudentStats(userId));
-        else setStudentStats(undefined);
+        if (userId) {
+          setStudentStats(await fetchStudentStats(userId));
+          setTopStudents([]);
+          setLastAttempts(await fetchLastAttempts(userId));
+        } else {
+          setStudentStats(undefined);
+          setTopStudents(await fetchTopStudents());
+          setLastAttempts(await fetchLastAttempts());
+        }
       } finally {
         setLoading(false);
       }
@@ -128,6 +137,38 @@ const AdminAnalyticsPage: React.FC = () => {
           height={220}
         />
       </section>
+
+      {selectedUser === 'all' && topStudents.length > 0 && (
+        <section className="admin-analytics__section">
+          <h3 className="admin-analytics__subtitle">Top 5 Students (Avg %)</h3>
+          <ul className="admin-analytics__list">
+            {topStudents.map((s, idx) => (
+              <li key={s.userId} className="admin-analytics__item">
+                <span><strong>#{idx + 1}</strong> {s.name}</span>
+                <span className="admin-analytics__right">{s.avgPercent.toFixed(1)}% avg · {s.attempts} attempts</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {lastAttempts.length > 0 && (
+        <section className="admin-analytics__section">
+          <h3 className="admin-analytics__subtitle">Last 5 Quiz Attempts</h3>
+          <ul className="admin-analytics__list">
+            {lastAttempts.map((a, idx) => (
+              <li key={`${a.userId ?? 'me'}-${idx}-${a.createdAt}`} className="admin-analytics__item">
+                <span>
+                  {selectedUser === 'all' && a.name ? <strong>{a.name}</strong> : <strong>Attempt {idx + 1}</strong>}
+                </span>
+                <span className="admin-analytics__right">
+                  {a.score} / {a.total} ({a.percent.toFixed(1)}%) · {new Date(a.createdAt).toLocaleString()}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   );
 };

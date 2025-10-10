@@ -52,3 +52,15 @@ export async function fetchMySummary(): Promise<StudentStats> {
   const res = await client.get('/me/summary');
   return res.data.data as StudentStats;
 }
+
+export type TopStudent = { userId: string; name: string; email: string; avgPercent: number; attempts: number };
+export async function fetchTopStudents(): Promise<TopStudent[]> {
+  const res = await client.get('/top-students');
+  return res.data.data as TopStudent[];
+}
+
+export type AttemptRow = { userId?: string; name?: string; score: number; total: number; percent: number; createdAt: string };
+export async function fetchLastAttempts(userId?: string): Promise<AttemptRow[]> {
+  const res = await client.get('/last-attempts', { params: { userId } });
+  return res.data.data as AttemptRow[];
+}

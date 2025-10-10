@@ -13,3 +13,10 @@
 .admin-analytics__subtitle { margin-bottom: 0.5rem; }
 .admin-analytics__note { color: #555; margin-bottom: 0.5rem; }
 .admin-analytics__status { padding: 1rem; text-align: center; }
+.admin-analytics__list { list-style: none; padding: 0; margin: 0.5rem 0 0; }
+.admin-analytics__item { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0.75rem; border: 1px solid #eee; border-radius: 8px; margin-bottom: 0.5rem; background: #fff; transition: background-color 120ms ease, border-color 120ms ease; }
+.admin-analytics__item:nth-child(odd) { background: #f9fafb; }
+.admin-analytics__item:hover { background: #eef2f7; border-color: #d1d5db; }
+.admin-analytics__item strong { margin-right: 0.5rem; }
+.admin-analytics__muted { color: #6b7280; }
+.admin-analytics__right { margin-left: auto; color: #1f2937; font-weight: 600; }
